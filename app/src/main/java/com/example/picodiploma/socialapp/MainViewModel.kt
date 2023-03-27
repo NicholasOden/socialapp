@@ -11,7 +11,6 @@ import retrofit2.Response
 
 
 class MainViewModel : ViewModel() {
-
     private val apiService = ApiConfig.getApiService()
     private val usersLiveData = MutableLiveData<List<GithubUser>>()
 
@@ -37,4 +36,5 @@ class MainViewModel : ViewModel() {
         return usersLiveData
     }
 }
+
 

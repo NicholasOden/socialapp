@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Create an instance of MainViewModel
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         supportActionBar?.title = "Github User's Search"
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         adapter = UserListAdapter(emptyList())
         binding.recyclerView.adapter = adapter
 
+        // Observe the usersLiveData from MainViewModel
         viewModel.getUsers().observe(this, { users ->
             for (user in users) {
                 user.avatarUrl = user.avatarUrl // set the avatarUrl property using the avatar_url property
@@ -62,8 +63,10 @@ class MainActivity : AppCompatActivity() {
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                // Handle query submission
-                return false
+                showLoading(true)
+                // Call the getGithubUsers function from MainViewModel
+                viewModel.getGithubUsers(query)
+                return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
