@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">socialapp</string>
+    <string name="search">pencarian</string>
 </resources>

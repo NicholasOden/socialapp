@@ -8,7 +8,6 @@ import retrofit2.http.Query
 
 
 interface ApiService {
-    @Headers("Authorization: token <githubku>")
     @GET("search/users")
     fun searchUsers(@Query("q") username: String): Call<GithubResponse>
 }

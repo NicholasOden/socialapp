@@ -17,15 +17,14 @@
             android:padding="16dp">
 
             <ImageView
-                android:id="@+id/image_view"
+                android:id="@+id/ivPicture"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/circle"
                 tools:src="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/text_view"
+                android:id="@+id/tvText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
