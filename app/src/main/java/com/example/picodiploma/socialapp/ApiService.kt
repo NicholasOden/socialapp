@@ -5,16 +5,18 @@ import retrofit2.http.*
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
-
 interface ApiService {
     @GET("search/users")
-    fun searchUsers(@Query("q") username: String): Call<GithubResponse>
-}
+    fun searchUsers(
+        @Header("GITME") authorizationHeader: String,
+        @Query("q") username: String
+    ): Call<GithubResponse>
 
-/*interface ApiService {
-    @GET("search/users")
-    fun searchUsers(@Query("q") username: String): Call<UserSearchResponse>
-}
+    @GET("users/{username}")
+    fun getDetailUser(
+        @Header("Authorization") authHeader: String,
+        @Path("username") username: String
+    ): Call<DetailUserResponse>
 
-data class UserSearchResponse(val items: List<GithubResponse>)*/
+
+}

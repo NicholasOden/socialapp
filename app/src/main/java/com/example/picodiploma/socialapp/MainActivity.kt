@@ -38,7 +38,12 @@ class MainActivity : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.recyclerView.addItemDecoration(itemDecoration)
 
-        adapter = UserListAdapter(emptyList())
+        adapter = UserListAdapter(emptyList(), onClickListener = { user ->
+            // Handle the click event on the user item
+            viewModel.getDetailUser(user.login)
+            val intent = DetailActivity.newIntent(this@MainActivity, user.login)
+            startActivity(intent)
+        })
         binding.recyclerView.adapter = adapter
 
         // Observe the usersLiveData from MainViewModel
