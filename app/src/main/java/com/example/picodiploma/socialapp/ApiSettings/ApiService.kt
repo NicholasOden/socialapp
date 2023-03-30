@@ -1,5 +1,7 @@
-package com.example.picodiploma.socialapp
+package com.example.picodiploma.socialapp.ApiSettings
 
+import com.example.picodiploma.socialapp.DetailUserResponse
+import com.example.picodiploma.socialapp.GithubResponse
 import retrofit2.Call
 import retrofit2.http.*
 import retrofit2.http.GET

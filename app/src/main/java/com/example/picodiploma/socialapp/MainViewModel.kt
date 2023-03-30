@@ -1,10 +1,10 @@
 package com.example.picodiploma.socialapp
 
-import android.service.controls.ControlsProviderService.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.picodiploma.socialapp.ApiSettings.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,11 +12,9 @@ import retrofit2.Response
 class MainViewModel : ViewModel() {
     private val apiService = ApiConfig.getApiService()
     private val usersLiveData = MutableLiveData<List<GithubUser>>()
-    private val userLiveData = MutableLiveData<DetailUserResponse>()
 
     companion object {
-        private const val AUTHORIZATION_HEADER = "Authorization"
-        private const val AUTHORIZATION_TOKEN = "GITME"
+        private const val AUTHORIZATION_TOKEN = "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"
         private const val TAG = "MainViewModel"
     }
 
@@ -42,13 +40,15 @@ class MainViewModel : ViewModel() {
         return usersLiveData
     }
 
-    fun getDetailUser(username: String) {
+    fun getDetailUser(username: String): LiveData<DetailUserResponse> {
+        val userLiveData = MutableLiveData<DetailUserResponse>()
+
         val call = apiService.getDetailUser("Bearer $AUTHORIZATION_TOKEN", username)
         call.enqueue(object : Callback<DetailUserResponse> {
             override fun onResponse(call: Call<DetailUserResponse>, response: Response<DetailUserResponse>) {
                 if (response.isSuccessful) {
-                    val user = mapDetailUserToGithubUser(response.body()!!)
-                    userLiveData.value = response.body()
+                    val detailUser = response.body()!!
+                    userLiveData.value = detailUser
                 } else {
                     Log.e(TAG, "Failed to retrieve Github user")
                 }
@@ -58,18 +58,9 @@ class MainViewModel : ViewModel() {
                 Log.e(TAG, "Failed to retrieve Github user", t)
             }
         })
-    }
 
-
-    fun getUser(): LiveData<DetailUserResponse> {
         return userLiveData
     }
 
-    private fun mapDetailUserToGithubUser(detailUser: DetailUserResponse): GithubUser {
-        return GithubUser(
-            detailUser.login,
-            detailUser.id,
-            detailUser.avatarUrl
-        )
-    }
+
 }

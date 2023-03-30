@@ -1,4 +1,4 @@
-package com.example.picodiploma.socialapp
+package com.example.picodiploma.socialapp.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -10,12 +10,15 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.picodiploma.socialapp.MainViewModel
+import com.example.picodiploma.socialapp.R
+import com.example.picodiploma.socialapp.UserListAdapter
 import com.example.picodiploma.socialapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adapter: UserListAdapter
+    private lateinit var useradapter: UserListAdapter
     private lateinit var viewModel: MainViewModel
 
     companion object {
@@ -38,20 +41,20 @@ class MainActivity : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.recyclerView.addItemDecoration(itemDecoration)
 
-        adapter = UserListAdapter(emptyList(), onClickListener = { user ->
+        useradapter = UserListAdapter(emptyList(), onClickListener = { user ->
             // Handle the click event on the user item
             viewModel.getDetailUser(user.login)
             val intent = DetailActivity.newIntent(this@MainActivity, user.login)
             startActivity(intent)
         })
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = useradapter
 
         // Observe the usersLiveData from MainViewModel
         viewModel.getUsers().observe(this, { users ->
             for (user in users) {
                 user.avatarUrl = user.avatarUrl // set the avatarUrl property using the avatar_url property
             }
-            adapter.setUserList(users)
+            useradapter.setUserList(users)
             showLoading(false)
         })
 

@@ -1,4 +1,4 @@
-package com.example.picodiploma.socialapp
+package com.example.picodiploma.socialapp.ApiSettings
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

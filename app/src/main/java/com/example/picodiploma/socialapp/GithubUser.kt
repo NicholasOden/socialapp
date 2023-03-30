@@ -10,6 +10,8 @@ data class GithubResponse(
 data class GithubUser(
     val login: String,
     val id: Int,
-    @SerializedName("avatar_url") var avatarUrl: String
+    @SerializedName("avatar_url") var avatarUrl: String,
+    val followers: Int,
+    val following: Int
 )
 
