@@ -1,4 +1,4 @@
-package com.example.picodiploma.socialapp
+package com.example.picodiploma.socialapp.Response
 
 import com.google.gson.annotations.SerializedName
 

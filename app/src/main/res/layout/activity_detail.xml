@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.DetailActivity">
+    tools:context=".uiDetail.DetailActivity">
 
     <ImageView
         android:id="@+id/imageView_detail"
@@ -41,26 +41,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_name" />
 
-    <TextView
-        android:id="@+id/textView_followers"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/followers"
-        android:textSize="16sp"
-        app:drawableStartCompat="@drawable/baseline_people"
-        app:layout_constraintEnd_toStartOf="@+id/textView_login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_login" />
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/textView_name"
+        app:layout_constraintStart_toStartOf="@id/textView_name"
+        app:layout_constraintTop_toBottomOf="@+id/textView_login">
 
-    <TextView
-        android:id="@+id/textView_following"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/following"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_login"
-        app:layout_constraintTop_toBottomOf="@+id/textView_login" />
+        <TextView
+            android:id="@+id/textView_followers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/followers"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_login" />
+
+        <View
+            android:id="@+id/view_separator"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/textView_following"
+            app:layout_constraintStart_toEndOf="@+id/textView_followers"
+            app:layout_constraintTop_toBottomOf="@+id/textView_login" />
+
+        <TextView
+            android:id="@+id/textView_following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/following"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_login"
+            app:layout_constraintTop_toBottomOf="@+id/textView_login" />
+
+    </LinearLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
@@ -68,23 +92,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="?attr/colorPrimary"
+        android:contentDescription="Tabs for navigating through the sections of the page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_followers"
-        app:tabTextColor="@android:color/white"
-        android:contentDescription="Tabs for navigating through the sections of the page"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:tabTextColor="@android:color/white" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
-        android:layout_width="409dp"
-        android:layout_height="343dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Navigasi Followers dan Following"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabs"
-        android:contentDescription="Navigasi Followers dan Following"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tabs" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_detailUp"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tabs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

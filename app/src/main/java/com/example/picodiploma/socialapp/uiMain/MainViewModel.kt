@@ -1,10 +1,13 @@
-package com.example.picodiploma.socialapp
+package com.example.picodiploma.socialapp.uiMain
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.picodiploma.socialapp.ApiSettings.ApiConfig
+import com.example.picodiploma.socialapp.GithubResponse
+import com.example.picodiploma.socialapp.GithubUser
+import com.example.picodiploma.socialapp.Response.DetailUserResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

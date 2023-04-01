@@ -1,4 +1,4 @@
-package com.example.picodiploma.socialapp.ui
+package com.example.picodiploma.socialapp.uiMain
 
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +10,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.picodiploma.socialapp.MainViewModel
 import com.example.picodiploma.socialapp.R
-import com.example.picodiploma.socialapp.UserListAdapter
+import com.example.picodiploma.socialapp.Adapter.UserListAdapter
 import com.example.picodiploma.socialapp.databinding.ActivityMainBinding
+import com.example.picodiploma.socialapp.uiDetail.DetailActivity
 
 class MainActivity : AppCompatActivity() {
 
