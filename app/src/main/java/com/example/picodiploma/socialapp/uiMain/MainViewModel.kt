@@ -64,6 +64,4 @@ class MainViewModel : ViewModel() {
 
         return userLiveData
     }
-
-
 }
